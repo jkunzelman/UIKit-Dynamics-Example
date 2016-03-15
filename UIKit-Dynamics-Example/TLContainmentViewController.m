@@ -89,6 +89,20 @@
         contentViewController.delegate = self;
     }
 }
+#pragma mark - Handle Rotation
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    self.animator = nil;
+    self.menuOpen = NO;
+    [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+        // Place code here to perform animations during the rotation.
+        // You can pass nil or leave this block empty if not necessary.
+        
+    } completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+         [self setupMapContainerViewAnimatorProperties];
+    }];
+}
 
 #pragma mark - UIGestureRecognizerDelegate Methods
 
